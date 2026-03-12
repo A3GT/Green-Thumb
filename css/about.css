@@ -1,0 +1,44 @@
+body {
+	background-color: #FFFFFF;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	text-align: center;
+	margin: 0;
+}
+
+h1{
+	text-align: center;
+	margin-top: 40px;
+}
+
+.about-text {
+	max-width: 700px;
+	margin: 20px auto;
+	line-height: 1.6;
+	font-size: 18px;
+	text-align: left;
+}
+
+.info-columns {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	max-width: 1200px;
+	margin: 0 auto 60px auto;
+}
+
+.info-box {
+	background-color: #f3f8f3;
+	border: 2px solid #d7e8d7;
+	border-radius: 16px;
+	padding: 25px;
+	width: 33%;
+	box-sizing: border-box;
+	text-align: left;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Creates a hover effect */
+.info-box:hover {
+	transform: translateY(-5px);
+	transition: 0.2s;
+}

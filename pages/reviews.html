@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Thumb - Reviews</title>
+
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/reviews.css">
+</head>
+
+
+<body data-page="reviews">
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+<a class="brand" href="../index.html">Green Thumb</a>
+<a href="../index.html" data-link="index">Home</a>
+<a href="shop.html" data-link="shop">Shop</a>
+<a href="cart.html" data-link="cart">Cart</a>
+<a href="reviews.html" data-link="reviews">Reviews</a>
+<a href="about.html" data-link="about">About</a>
+</div>
+
+
+<h1>&#9733; Customer Reviews</h1>
+<p class="subtitle">See what our customers are saying about Green Thumb!</p>
+
+
+<!-- REVIEWS -->
+
+<div class="reviews-container" id="reviews-container">
+
+<div class="review-card">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;</div>
+<div class="review-text">"Love your product. The quality is amazing."</div>
+<div class="reviewer-name">Raneem A.</div>
+<div class="review-date">Feb 2026</div>
+</div>
+
+<div class="review-card">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="review-text">"This is so nicely packaged. I think I'm in love!"</div>
+<div class="reviewer-name">Shrinal D.</div>
+<div class="review-date">Jan 2026</div>
+</div>
+
+<div class="review-card">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="review-text">"I am very happy with my purchase!"</div>
+<div class="reviewer-name">David G.</div>
+<div class="review-date">Jan 2026</div>
+</div>
+
+<div class="review-card">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="review-text">"I love this. I've already convinced my friends to get one!"</div>
+<div class="reviewer-name">Tien L.</div>
+<div class="review-date">Dec 2025</div>
+</div>
+
+<div class="review-card">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="review-text">"This is one of the best products I have bought!"</div>
+<div class="reviewer-name">Grey</div>
+<div class="review-date">Dec 2025</div>
+</div>
+
+</div>
+
+
+<!-- REVIEW FORM -->
+
+<div class="form-container">
+
+<h2>Leave a Review :)</h2>
+
+<label>Your Name</label>
+<input type="text" id="input-name" placeholder="e.g. Alex G.">
+
+<label>Your Rating</label>
+
+<div class="star-picker" id="star-picker">
+<span data-val="1">&#9733;</span>
+<span data-val="2">&#9733;</span>
+<span data-val="3">&#9733;</span>
+<span data-val="4">&#9733;</span>
+<span data-val="5">&#9733;</span>
+</div>
+
+<label>Your Review</label>
+<textarea id="input-review" placeholder="Write your review here..."></textarea>
+
+<button onclick="submitReview()">Submit Review</button>
+
+</div>
+
+<script src="../js/reviews.js"></script>
+
+</body>
+</html>
