@@ -6,7 +6,8 @@ body {
 
 @keyframes spin {
 	0%{transform:rotate(0deg);}
-	100%{transform:rotate(359deg);}
+	50%{transform:rotate(359deg);}
+	100%{transform:rotate(180deg);}
 }
 
 img.generated{
@@ -23,8 +24,8 @@ img.generated{
 	height: 400px;
 	width: 400px;
 	padding: 0.5rem;
-	border: 10px outset darkgreen;
-	background-color: lightgreen;
+	border: 10px outset #bdddc0;
+	background-color: #d7e8d7;
 }
 
 .generator_container div {

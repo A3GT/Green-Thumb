@@ -61,11 +61,21 @@ let plants = [
 ];
 // End of Marc's Section
 
+let mystery = [
+	"assets/images/plants/wheel.png",
+	""
+]
+
+let spin_timer;
+
 function reset_animation() {
   var el = document.getElementById('animated');
 }
 
 function generate_plant() {
+	if(spin_timer != null){
+		clearTimeout(spin_timer);
+	}
 	//Get a random one from the list
 	plant = rand_plant();
 	//This is janky but it lets the animation reset for each button press
@@ -73,15 +83,21 @@ function generate_plant() {
 	generated_plant.offsetHeight;
 	generated_plant.style.animation = null;
 	//Set all the html and css parameters based on chosen plant
-	generated_plant.src = plant[0];
 	generated_plant.style.display = "block";
 	generated_plant.style.visibility = "visible";
 	generated_plant.style.animation = "spin .5s linear";
 	generated_plant.style.animationDuration = "1s";
 	generate_button.innerHTML = "Generate a new plant";
-	generated_plant_description.innerHTML = plant[1];
+	set_plant(mystery)
+	//Sets a timer to change the image and description after the animation is finished
+	spin_timer = setTimeout(set_plant, 1000, plant);
 }
 
 function rand_plant() {
 	return plants[Math.floor(Math.random() * plants.length)];
+}
+
+function set_plant(new_plant) {
+	generated_plant.src = new_plant[0];
+	generated_plant_description.innerHTML = new_plant[1];
 }
