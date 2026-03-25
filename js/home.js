@@ -60,7 +60,7 @@ let plants = [
 "<b>Sunflower</b><br>A bright plant that supports pollinators like bees. It produces seeds commonly used in food and cooking oil. Its tall stems and large flowers make it popular in gardens."]
 ];
 // End of Marc's Section
-
+// Grey's plant generator section
 let mystery = [
 	"assets/images/plants/wheel.png",
 	""
@@ -101,3 +101,4 @@ function set_plant(new_plant) {
 	generated_plant.src = new_plant[0];
 	generated_plant_description.innerHTML = new_plant[1];
 }
+//End of Grey's section
