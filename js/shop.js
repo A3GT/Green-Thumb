@@ -5,12 +5,15 @@ document.querySelectorAll("[data-link]").forEach(a => {
 
 const searchInput = document.getElementById("product-search-input");
 const searchButton = document.getElementById("product-search-button");
+const productsGrid = document.getElementById("products-grid");
 const productCards = Array.from(document.querySelectorAll(".product-card"));
 const emptyState = document.getElementById("search-empty");
 
 function filterProducts() {
   const query = searchInput.value.trim().toLowerCase();
   let visibleCount = 0;
+
+  productsGrid.classList.toggle("search-results", query !== "");
 
   productCards.forEach(card => {
     const searchableText = card.innerText.toLowerCase();

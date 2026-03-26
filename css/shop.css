@@ -35,6 +35,10 @@ body {
   gap: 1rem;
 }
 
+.products-grid.search-results {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
 .product-card {
   background: var(--card-bg);
   border: 1px solid var(--accent-soft);
