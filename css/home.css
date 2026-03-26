@@ -11,30 +11,46 @@ body {
 }
 
 img.generated{
-	max-width: 100%;
+	display: block;
+	object-fit: contain;
 	max-height: 100%;
-	display: none;
-	visibility: hidden;
-}
-
-.generator_container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space between;
-	height: 400px;
-	width: 400px;
-	padding: 0.5rem;
-	border: 10px outset #bdddc0;
-	background-color: #d7e8d7;
-}
-
-.generator_container div {
-	height: 100%;
+	max-width: 100%;
+	margin: auto;
 }
 
 div.generated{
-	background-color: green;
-	text-align: center;
+	max-height: 80%;
+	height: 80%;
+	max-width: 100%;
+	width: 100%;
+	box-sizing: content-box;
+}
+
+div.plant_display{
+	height: 90%;
+}
+
+p.generated{
+	overflow: auto;
+	font-size: .75vw;
+}
+
+.outer_generator {
+	width: 100%;
+}
+
+.inner_generator {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-height: 100%;
+	width: 30vw;
+	aspect-ratio: 1.25/1;
+	padding: 0.5rem;
+	border: 10px outset #bdddc0;
+	background-color: #d7e8d7;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 button.generate{

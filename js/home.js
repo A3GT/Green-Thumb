@@ -83,8 +83,7 @@ function generate_plant() {
 	generated_plant.offsetHeight;
 	generated_plant.style.animation = null;
 	//Set all the html and css parameters based on chosen plant
-	generated_plant.style.display = "block";
-	generated_plant.style.visibility = "visible";
+	
 	generated_plant.style.animation = "spin .5s linear";
 	generated_plant.style.animationDuration = "1s";
 	generate_button.innerHTML = "Generate a new plant";

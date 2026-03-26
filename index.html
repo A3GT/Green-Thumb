@@ -24,12 +24,16 @@
 <!-- this is a comment -->
 <p style="text-align:center;">A place where we can make environmentally conscious choices by offering
 reusable, eco-friendly products that reduce waste and support a greener lifestyle!</p>
-<div class="generator_container">
-	<div>
-	<img id="generated_plant" class="generated" alt="plant">
-		<p id="generated_plant_description"></p>
+<div class="outer_generator">
+	<div class="inner_generator">
+		<div class="plant_display">
+			<div class="generated">
+				<img id="generated_plant" class="generated" alt="plant" src="assets/images/plants/wheel.png">
+			</div>
+			<p id="generated_plant_description" class="generated"></p>
+		</div>
+		<button class="generate" id="generate_button" onclick="generate_plant()">Generate a Plant</button>
 	</div>
-	<button class="generate" id="generate_button" onclick="generate_plant()">Generate a Plant</button>
 </div>
 <!--Plant Generator End-->
 
