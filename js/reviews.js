@@ -1,4 +1,9 @@
 
+const page = document.body.dataset.page;
+document.querySelectorAll("[data-link]").forEach(a => {
+  if (a.dataset.link === page) a.classList.add("active");
+});
+
 // Rating data based on actual reviews
 let ratingData = {
   5: 4,
