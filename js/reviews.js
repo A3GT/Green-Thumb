@@ -1,10 +1,33 @@
-/* NAV ACTIVE LINK */
-const page = document.body.dataset.page;
-document.querySelectorAll("[data-link]").forEach(a=>{
-if(a.dataset.link===page) a.classList.add("active");
-});
 
-/* STAR PICKER */
+// Rating data based on actual reviews
+let ratingData = {
+  5: 4,
+  4: 1,
+  3: 0,
+  2: 0,
+  1: 0
+};
+
+// Function to get total reviews
+function getTotalReviews() {
+  return Object.values(ratingData).reduce((a, b) => a + b, 0);
+}
+
+// Function to update the rating distribution display
+function updateRatingDistribution() {
+  const total = getTotalReviews();
+  
+  for (let stars = 1; stars <= 5; stars++) {
+    const count = ratingData[stars];
+    const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+    
+    document.getElementById(`count-${stars}`).textContent = count;
+    document.getElementById(`percent-${stars}`).textContent = percentage + '%';
+    document.getElementById(`bar-${stars}`).style.width = percentage + '%';
+  }
+}
+
+// STAR PICKER
 let selectedStars=0;
 const stars=document.querySelectorAll("#star-picker span");
 
@@ -30,7 +53,7 @@ s.style.color=parseInt(s.dataset.val)<=selectedStars?"gold":"#ccc";
 });
 });
 
-/* SUBMIT REVIEW */
+// SUBMIT REVIEW
 function submitReview(){
 const name=document.getElementById("input-name").value.trim();
 const text=document.getElementById("input-review").value.trim();
@@ -59,6 +82,10 @@ card.innerHTML=`
 
 const container=document.getElementById("reviews-container");
 container.insertBefore(card,container.firstChild);
+
+// Add to rating data and update distribution
+ratingData[selectedStars]++;
+updateRatingDistribution();
 
 document.getElementById("input-name").value="";
 document.getElementById("input-review").value="";
