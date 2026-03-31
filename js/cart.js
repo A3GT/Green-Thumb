@@ -18,14 +18,14 @@ function loadCart(){
       <article class="product-card">
         <div class="product-info">
           <h2 class="product-name">${item.name}</h2>
-          <div class="product-price">$${item.price}</div>
+          <div class="product-price">$${item.price.toFixed(2)}</div>
           <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
         </div>
       </article>
     `;
   });
 
-  document.getElementById("cart-total").innerText = total;
+  document.getElementById("cart-total").innerText = total.toFixed(2);
 }
 
 function removeItem(index){
