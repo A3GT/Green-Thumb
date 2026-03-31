@@ -31,7 +31,13 @@
           <h2 class="product-name">Default</h2>
           <p class="product-desc">This shouldn't be visible</p>
           <div class="product-price">$0.00</div>
-          <button onclick="addToCart('Default',0)">Add to Cart</button>
+<!-- Shrinal's requirement to add quantity button -->
+<div class="cart-controls">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+<button onclick="addToCartWithQty(this,'Default',0)">Add to Cart</button>
+</div> <!-- End of Shrinal's requirement -->
         </div>
       </article>
       <!--

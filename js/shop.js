@@ -171,15 +171,29 @@ searchInput.addEventListener("keydown", event => {
   }
 });
 
-function addToCart(name, price) {
+function addToCartWithQty(btn, name, price){
+
+  let qty = parseInt(btn.parentElement.querySelector(".qty").innerText);
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   cart.push({
     name: name,
-    price: price
+    price: price,
+    qty: qty
   });
 
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  alert(name + " added to cart!");
+  alert(name + " (x" + qty + ") added to cart!");
+}
+
+function changeQty(btn, change){
+  let qtySpan = btn.parentElement.querySelector(".qty");
+  let qty = parseInt(qtySpan.innerText);
+
+  qty += change;
+  if(qty < 1) qty = 1;
+
+  qtySpan.innerText = qty;
 }
