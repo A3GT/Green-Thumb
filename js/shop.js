@@ -9,6 +9,14 @@ const productsGrid = document.getElementById("products-grid");
 const productCards = Array.from(document.querySelectorAll(".product-card"));
 const emptyState = document.getElementById("search-empty");
 
+//Runs on page load and searches by URL tag
+const urlQuery = window.location.hash?.split("search=")[1]?.replaceAll("%20", ' ').split("#")[0];
+if(urlQuery != null) {
+  searchInput.value = urlQuery;
+  filterProducts()
+}
+//
+
 function filterProducts() {
   const query = searchInput.value.trim().toLowerCase();
   let visibleCount = 0;
