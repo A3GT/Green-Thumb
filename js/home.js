@@ -100,7 +100,7 @@ function load_rand_plant() {
 		plant_location = Math.floor(Math.random() * plants.length);
 	} else {
 		//Otherwise get a random plant besides the current one
-		plant_location = (plant_location + Math.floor(Math.random() * (plants.length - 1))) % plants.length;
+		plant_location = (plant_location + Math.floor(Math.random() * (plants.length - 1) + 1)) % plants.length;
 	}
 	return plants[plant_location];
 }
