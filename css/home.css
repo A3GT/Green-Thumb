@@ -57,3 +57,13 @@ button.generate{
 	height: 60px;
 	width: 180px;
 }
+
+img.generated::-moz-selection {
+    background-color: transparent;
+    color: #000;
+}
+
+img.generated::selection {
+    background-color: transparent;
+    color: #000;
+}
