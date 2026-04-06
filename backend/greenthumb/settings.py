@@ -54,7 +54,7 @@ ROOT_URLCONF = 'greenthumb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['greenthumb/templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
