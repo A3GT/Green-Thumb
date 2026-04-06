@@ -57,3 +57,19 @@ button.generate{
 	height: 60px;
 	width: 180px;
 }
+
+img.generated::-moz-selection {
+    background-color: transparent;
+    color: #000;
+}
+
+img.generated::selection {
+    background-color: transparent;
+    color: #000;
+}
+
+.home-container{
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}

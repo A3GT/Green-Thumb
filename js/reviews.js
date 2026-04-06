@@ -100,3 +100,9 @@ stars.forEach(s=>{s.style.color="#ccc";});
 
 alert("Thank you for your review!");
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  if(typeof updateCartCount === "function"){
+    updateCartCount();
+  }
+});
