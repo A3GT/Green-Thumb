@@ -18,7 +18,10 @@
         <input id="product-search-input" type="text" placeholder="Search products...">
         <button id="product-search-button" type="button">Search</button>
     </div>
-    <a class="cart-link" href="cart.html" data-link="cart" aria-label="Cart">&#128722;</a>
+   <a class="cart-link" href="cart.html" data-link="cart" aria-label="Cart">
+  &#128722;
+  <span class="cart-count" id="cart-count">0</span>
+</a>
 </div>
 
   <main class="shop-wrap">
@@ -31,8 +34,14 @@
           <h2 class="product-name">Default</h2>
           <p class="product-desc">This shouldn't be visible</p>
           <div class="product-price">$0.00</div>
-          <button onclick="addToCart('Default',0)">Add to Cart</button>
-        </div>
+<div class="cart-controls">
+  <button onclick="changeQty(this,-1)">-</button>
+  <span class="qty">1</span>
+  <button onclick="changeQty(this,1)">+</button>
+
+  <button onclick="addToCartWithQty(this,'Default',0)">Add to Cart</button>
+</div>        
+</div>
       </article>
       <!--
       <article class="product-card">
@@ -92,5 +101,6 @@
   </main>
 
   <script src="../js/shop.js"></script>
+  <script src="../js/common.js"></script>
 </body>
 </html>

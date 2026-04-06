@@ -4,6 +4,7 @@ document.querySelectorAll("[data-link]").forEach(a => {
 });
 
 function loadCart(){
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   let cartDiv = document.getElementById("cart-items");
@@ -12,14 +13,28 @@ function loadCart(){
   cartDiv.innerHTML = "";
 
   cart.forEach((item,index)=>{
-    total += item.price;
+
+    let qty = item.qty || 1;
+    let itemTotal = item.price * qty;
+
+    total += itemTotal;
 
     cartDiv.innerHTML += `
       <article class="product-card">
         <div class="product-info">
+
           <h2 class="product-name">${item.name}</h2>
-          <div class="product-price">$${item.price.toFixed(2)}</div>
+
+          <div class="cart-controls">
+            <button onclick="updateQty(${index}, -1)">-</button>
+            <span class="qty">${qty}</span>
+            <button onclick="updateQty(${index}, 1)">+</button>
+          </div>
+
+          <div class="product-price">$${itemTotal.toFixed(2)}</div>
+
           <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+
         </div>
       </article>
     `;
@@ -27,7 +42,6 @@ function loadCart(){
 
   document.getElementById("cart-total").innerText = total.toFixed(2);
 }
-
 function removeItem(index){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -36,6 +50,7 @@ function removeItem(index){
   localStorage.setItem("cart",JSON.stringify(cart));
 
   loadCart();
+  updateCartCount();
 }
 
 function checkout(){
@@ -44,6 +59,28 @@ function checkout(){
   localStorage.removeItem("cart");
 
   loadCart();
+  updateCartCount();
 }
 
 loadCart();
+
+
+updateCartCount();
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+function updateQty(index, change){
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[index].qty += change;
+
+  if(cart[index].qty < 1){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  loadCart();
+  updateCartCount();
+}
