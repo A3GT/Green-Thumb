@@ -32,7 +32,10 @@ class ProductCard {
     clone.querySelector("h2.product-name").innerText = this.product_name;
     clone.querySelector("p.product-desc").innerText = this.desc;
     clone.querySelector("div.product-price").innerText = "$" + this.price.toFixed(2);
-    clone.querySelector("button").onclick = function() { addToCart(this.product_name, this.price); }.bind(this);
+    const btn = clone.querySelector(".cart-controls button:last-child");
+    btn.onclick = function() {
+    addToCartWithQty(btn, this.product_name, this.price);
+    }.bind(this);
     clone.querySelector.data
     productsGrid.appendChild(clone);
     productCards.push(clone);
@@ -171,15 +174,42 @@ searchInput.addEventListener("keydown", event => {
   }
 });
 
-function addToCart(name, price) {
+function addToCartWithQty(btn, name, price){
+
+  let qty = parseInt(btn.parentElement.querySelector(".qty").innerText);
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+let existingItem = cart.find(item => item.name === name);
+
+if(existingItem){
+  existingItem.qty += qty;
+}else{
   cart.push({
     name: name,
-    price: price
+    price: price,
+    qty: qty
   });
+}
 
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  alert(name + " added to cart!");
+  updateCartCount();
+
+  alert(name + " (x" + qty + ") added to cart!");
 }
+
+function changeQty(btn, change){
+  let qtySpan = btn.parentElement.querySelector(".qty");
+  let qty = parseInt(qtySpan.innerText);
+
+  qty += change;
+  if(qty < 1) qty = 1;
+
+  qtySpan.innerText = qty;
+}
+
+
+updateCartCount();
+
+document.addEventListener("DOMContentLoaded", updateCartCount);

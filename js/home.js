@@ -135,3 +135,9 @@ function plant_in_shop() {
 	window.location.href = (shop_url + "#search=" + plants[plant_location].search_id);
 }
 //End of Grey's section
+
+document.addEventListener("DOMContentLoaded", function(){
+  if(typeof updateCartCount === "function"){
+    updateCartCount();
+  }
+});

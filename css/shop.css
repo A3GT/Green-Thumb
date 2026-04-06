@@ -90,3 +90,29 @@ body {
   color: var(--muted);
   font-size: 1rem;
 }
+
+.cart-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:8px;
+}
+
+.cart-controls button{
+  padding:4px 8px;
+  border:none;
+  background:#5f8f6d;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.cart-controls button:hover{
+  background:#4b7359;
+}
+
+.qty{
+  min-width:20px;
+  text-align:center;
+  font-weight:bold;
+}
