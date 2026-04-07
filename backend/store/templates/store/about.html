@@ -1,0 +1,72 @@
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> GreenThumb </title>
+	<title>Home</title>
+  	<link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
+	<link rel="stylesheet" href="{% static 'store/css/about.css' %}">
+</head>
+
+<body data-page="about">
+<!-- ABOUT PAGE Contents Here-->
+<div class="navbar">
+    <a class="brand" href="{% url 'home' %}">Green Thumb</a>
+    <a href="{% url 'home' %}" data-link="index">Home</a>
+    <a href="{% url 'shop' %}" data-link="shop">Shop</a>
+    <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
+    <a href="{% url 'about' %}" data-link="about">About</a>
+    <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
+  &#128722;
+  <span class="cart-count" id="cart-count">0</span>
+</a>
+    <a class="account-link" href="{% url 'login' %}" aria-label="Login">
+      &#128100;
+    </a>
+  </div>
+
+<h1 style="text-align:center; margin-top:40px;">About Green Thumb</h1>
+<p class="about-text">
+Green Thumb is an online marketplace dedicated to promoting environmentally conscious living. 
+Our goal is to make eco-friendly and reusable products more accessible, helping people reduce 
+waste and make small everyday choices that support a greener planet.
+</p>
+
+<div class="info-columns">
+        <div class="info-box">
+            <h2>Motto and Guiding Values</h2>
+            <p>
+                At Green Thumb, we believe that small choices can create lasting change.
+                Our values are rooted in sustainability, responsibility, and encouraging
+                everyday habits that protect the environment for future generations.
+            </p>
+        </div>
+
+<div class="info-box">
+            <h2>What Makes Us Special</h2>
+            <p>
+                Green Thumb stands out by offering products that are both practical and
+                eco-friendly. We focus on reusable items that fit naturally into daily life,
+                making sustainable shopping simple, meaningful, and accessible for everyone.
+            </p>
+        </div>
+
+ <div class="info-box">
+            <h2>Tips for Sustainable Living</h2>
+            <ul>
+                <li>Use reusable bottles, bags, and containers.</li>
+                <li>Choose products with less packaging.</li>
+                <li>Reuse items before replacing them.</li>
+                <li>Make small changes consistently over time.</li>
+            </ul>
+        </div>
+    </div>
+
+  <script src="{% static 'store/js/about.js' %}"></script>
+  <script src="{% static 'store/js/common.js' %}"></script>
+
+</body>
+
+
+</html>

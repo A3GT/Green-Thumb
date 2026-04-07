@@ -1,0 +1,58 @@
+{% load static %}
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> GreenThumb </title>
+	<title>Home</title>
+	<link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
+	<link rel="stylesheet" href="{% static 'store/css/home.css' %}">
+</head>
+
+
+<body data-page="index" data-static-root="{% get_static_prefix %}">
+<div class="navbar">
+    <a class="brand" href="{% url 'home' %}">Green Thumb</a>
+    <a href="{% url 'home' %}" data-link="index">Home</a>
+    <a href="{% url 'shop' %}" data-link="shop">Shop</a>
+    <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
+    <a href="{% url 'about' %}" data-link="about">About</a>
+
+    <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
+      &#128722;
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+
+    <a class="account-link" href="{% url 'login' %}" aria-label="Login">
+      &#128100;
+    </a>
+</div>
+
+<div class="home-container">
+    <h1 style="text-align:center; margin: 30px 0;">Welcome to Green Thumb</h1>
+    <p style="text-align:center;">A place where we can make environmentally conscious choices by offering
+    reusable, eco-friendly products that reduce waste and support a greener lifestyle!</p>
+
+    <div class="outer_generator">
+        <div class="inner_generator">
+            <div class="plant_display">
+                <div class="generated">
+                    <img id="generated_plant" class="generated" alt="plant" src="{% static 'images/plants/wheel.png' %}">
+                </div>
+                <p id="generated_plant_description" class="generated"></p>
+            </div>
+            <div style="flex-direction: row;">
+                <button class="generate" id="generate_button" onclick="generate_plant()">Generate a Plant</button>
+                <button class="generate" id="shop_button" onclick="plant_in_shop()" style="visibility: hidden;">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'store/js/home.js' %}"></script>
+<script src="{% static 'store/js/common.js' %}"></script>
+</body>
+
+
+</html>

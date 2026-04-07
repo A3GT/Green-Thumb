@@ -1,0 +1,75 @@
+body {
+	background-color: #FFFFFF;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	text-align: center;
+}
+
+@keyframes spin {
+	0%{transform:rotate(0deg);}
+	50%{transform:rotate(359deg);}
+	100%{transform:rotate(180deg);}
+}
+
+img.generated{
+	display: block;
+	object-fit: contain;
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+}
+
+div.generated{
+	max-height: 80%;
+	height: 80%;
+	max-width: 100%;
+	width: 100%;
+	box-sizing: content-box;
+}
+
+div.plant_display{
+	height: 90%;
+}
+
+p.generated{
+	overflow: auto;
+	font-size: .75vw;
+}
+
+.outer_generator {
+	width: 100%;
+}
+
+.inner_generator {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-height: 100%;
+	width: 30vw;
+	aspect-ratio: 1.25/1;
+	padding: 0.5rem;
+	border: 10px outset #bdddc0;
+	background-color: #d7e8d7;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+button.generate{
+	height: 60px;
+	width: 180px;
+}
+
+img.generated::-moz-selection {
+    background-color: transparent;
+    color: #000;
+}
+
+img.generated::selection {
+    background-color: transparent;
+    color: #000;
+}
+
+.home-container{
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}

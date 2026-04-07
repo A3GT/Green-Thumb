@@ -1,0 +1,57 @@
+{% load static %}
+<!--Shrinal's Requirement to add cart and checkout section-->
+<html>
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> GreenThumb </title>
+        <title>Home</title>
+        <link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
+        <link rel="stylesheet" href="{% static 'store/css/cart.css' %}">
+</head>
+
+<body data-page="cart">
+<!-- CART Contents Here-->
+<div class="navbar">
+    <a class="brand" href="{% url 'home' %}">Green Thumb</a>
+    <a href="{% url 'home' %}" data-link="index">Home</a>
+    <a href="{% url 'shop' %}" data-link="shop">Shop</a>
+    <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
+    <a href="{% url 'about' %}" data-link="about">About</a>
+    <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
+  &#128722;
+  <span class="cart-count" id="cart-count">0</span>
+</a>
+    <a class="account-link" href="{% url 'login' %}" aria-label="Login">
+      &#128100;
+    </a>
+      
+</div>
+<main class="shop-wrap">
+  <h1 class="shop-title">Your Cart</h1>
+
+  <section class="products-grid" id="cart-items">
+  </section>
+
+  <div class="cart-summary">
+      <h2>Total: $<span id="cart-total">0</span></h2>
+
+      <h3>Payment Method</h3>
+      <select id="payment-method">
+        <option>Credit Card</option>
+        <option>Debit Card</option>
+        <option>UPI</option>
+      </select>
+
+      <br><br>
+
+      <button class="pay-btn" onclick="checkout()">Pay Now</button>
+  </div>
+</main>
+
+  <script src="{% static 'store/js/cart.js' %}"></script>
+  <script src="{% static 'store/js/common.js' %}"></script>
+
+</body>
+
+</html>
