@@ -1,26 +1,67 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Green Thumb</title>
+    <link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/account.css' %}">
 </head>
-<body>
-    <h1>Login</h1>
+<body class="auth-body" data-static-root="{% get_static_prefix %}">
+    <div class="navbar">
+        <a class="brand" href="{% url 'home' %}">Green Thumb</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'shop' %}">Shop</a>
+        <a href="{% url 'reviews' %}">Reviews</a>
+        <a href="{% url 'about' %}">About</a>
+        <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
+            &#128722;
+            <span class="cart-count" id="cart-count">0</span>
+        </a>
+        <a class="account-link active" href="{% url 'login' %}" aria-label="Login">
+            &#128100;
+        </a>
+    </div>
 
-    {% if user.is_authenticated %}
-        <p>You are logged in as {{ user.username }}.</p>
-    {% endif %}
+    <main class="auth-shell">
+        <section class="auth-card">
+            <h1>Login</h1>
+            <p class="auth-subtitle">Sign in to continue shopping.</p>
 
-    <!-- Display the login form -->
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+            {% if user.is_authenticated %}
+                <div class="status-banner status-success">
+                    You are logged in as <strong>{{ user.username }}</strong>.
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            {% endif %}
 
-    <p>Do not have an account yet?</p>
-    <a href="{% url 'register' %}">Create an Account</a>
+            {% if form.non_field_errors %}
+                <div class="status-banner status-error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
 
-    <br><br>
-    <a href="{% url 'logout' %}">Logout</a>
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-row">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+
+            <p class="auth-switch">
+                Do not have an account yet?
+                <a href="{% url 'register' %}">Create an Account</a>
+            </p>
+        </section>
+    </main>
+    <script src="{% static 'store/js/common.js' %}"></script>
 </body>
 </html>

@@ -26,6 +26,8 @@ body{
   padding:6px 10px;
   border-radius:10px;
   font-weight:600;
+  border:1px solid transparent;
+  box-sizing:border-box;
 }
 
 .navbar a.active{
@@ -43,6 +45,16 @@ body{
   font-size:1.2rem;
   line-height:1;
   position: relative;
+}
+
+.account-link{
+  margin-left:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  font-size:1.2rem;
+  line-height:1;
 }
 
 .search-box + .cart-link{
