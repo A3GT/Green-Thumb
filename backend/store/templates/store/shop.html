@@ -104,6 +104,9 @@
     <p class="search-empty" id="search-empty" hidden>No products match your search.</p>
   </main>
 
+  <script>
+  var django_shop_items = {% autoescape off %}{{ shop_data }}{% endautoescape %};
+  </script>
   <script src="{% static 'store/js/shop.js' %}"></script>
   <script src="{% static 'store/js/common.js' %}"></script>
 </body>

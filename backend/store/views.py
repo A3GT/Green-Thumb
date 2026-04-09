@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
+from .models import ShopProduct
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def home_view(request):
@@ -10,7 +13,11 @@ def home_view(request):
 
 
 def shop_view(request):
-    return render(request, 'store/shop.html')
+    shop_items = ShopProduct.objects.all().values()
+
+    js_items = json.dumps(list(shop_items), cls=DjangoJSONEncoder)
+    context = { 'shop_data' : js_items }
+    return render(request, 'store/shop.html', context)
 
 
 def reviews_view(request):

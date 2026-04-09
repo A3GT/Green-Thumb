@@ -24,8 +24,11 @@ class ProductCard {
     this.price = price;
   }
 
+  static from(json) {
+    return Object.assign(new ProductCard(), json)
+  }
+
   createCard() {
-    console.log(productCard);
     const clone = productCard.cloneNode(true);
     const img = clone.querySelector("img");
     img.src = this.src;
@@ -138,7 +141,12 @@ const products = [
 	)
 ];
 
-addEventListener("DOMContentLoaded", (event) => { 
+addEventListener("DOMContentLoaded", (event) => {
+  //Converts json dump into product card.
+  django_shop_items.forEach((element) => {
+    products.push(ProductCard.from(element))
+  })
+  //Runs through the product cards and creates an html element copy of productCard
   products.forEach((element) => element.createCard());
   //Check to see if there is a urlQuery and do a search if there is
   if(urlQuery != null) {
