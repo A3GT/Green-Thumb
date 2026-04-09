@@ -1,7 +1,12 @@
 body {
-	background-color: #FFFFFF;
-	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-	text-align: center;
+	margin: 0;
+  	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  	text-align: center;
+	min-height: 100vh;
+  	background:
+    	radial-gradient(circle at top left, rgba(180, 232, 180, 0.35), transparent 30%),
+    	radial-gradient(circle at top right, rgba(220, 245, 220, 0.45), transparent 28%),
+    	linear-gradient(135deg, #f7f5ee 0%, #eef7ec 55%, #e3f1e3 100%);
 }
 
 @keyframes spin {
@@ -15,7 +20,7 @@ img.generated{
 	object-fit: contain;
 	max-height: 100%;
 	max-width: 100%;
-	margin: auto;
+	margin: auto;	
 }
 
 div.generated{
@@ -56,7 +61,28 @@ p.generated{
 button.generate{
 	height: 60px;
 	width: 180px;
+	border: none;
+  	border-radius: 999px;
+  	background: linear-gradient(135deg, #5f8f63, #7cad7e);
+  	color: white;
+  	font-weight: 700;
+  	cursor: pointer;
+ 	box-shadow: 0 8px 20px rgba(84, 131, 90, 0.22);
+  	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
+
+button.generate:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px rgba(84, 131, 90, 0.28);
+	background: linear-gradient(135deg, #4f7a53, #709b74);
+}
+
+.inner_generator:hover { /* for the button to have a glowing boarder*/
+	box-shadow:
+		0 18px 35px rgba(58, 95, 65, 0.22),
+		0 0 0 6px rgba(190, 230, 190, 0.35);
+}
+
 
 img.generated::-moz-selection {
     background-color: transparent;
@@ -72,4 +98,17 @@ img.generated::selection {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+}
+
+.hero-content {
+	max-width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.generator-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
 }
