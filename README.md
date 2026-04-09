@@ -18,7 +18,7 @@ You may need to migrate any changes made if you are running the server for the f
 ```bash
 python manage.py migrate
 ```
-Once cloned, run the server
+Once migrated, run the server
 ```bash
 python manage.py runserver
 ```
