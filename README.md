@@ -57,14 +57,15 @@ python manage.py runserver
 ```
 Now you should be able to see the webpages by going to [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 ## ⭐ Creating a superuser
-To get an admin view you must add a superuser, open your terminal in the [backend](./backend)
+There is a supported admin view, which allows you to add, delete, and change user accounts, and other important data.
+
+To access the admin view at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) you need a superuser.
+First, open your terminal in the [backend](./backend)
 ```bash
 python manage.py createsuperuser
 ```
 Then enter a username, password, and email for your superuser account. Making sure to record your username and password.
 
-To get an admin view, run the server and go to [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+Then you should be able to go to [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) to login with your superuser account.
 
-Then login with your superuser account.
-
-The admin view has a user friendly view of the data within the database. To add or remove an item, just go to the group and click add or change.
+To add or remove an item, just go to the group and click add or change.
