@@ -1,0 +1,53 @@
+<div class="navbar">
+    <a class="brand" href="{% url 'home' %}">Green Thumb</a>
+    <a href="{% url 'home' %}" data-link="index">Home</a>
+    <a href="{% url 'shop' %}" data-link="shop">Shop</a>
+    <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
+    <a href="{% url 'about' %}" data-link="about">About</a>
+    {% if show_search %}
+        <div class="search-box">
+            <input id="product-search-input" type="text" placeholder="Search products...">
+            <button id="product-search-button" type="button">Search</button>
+        </div>
+    {% endif %}
+    <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
+        &#128722;
+        <span class="cart-count" id="cart-count">0</span>
+    </a>
+
+    {% if user.is_authenticated %}
+        <div class="account-menu">
+            <button
+                class="account-link account-toggle"
+                type="button"
+                aria-label="Account"
+                aria-haspopup="true"
+                aria-expanded="false"
+            >
+                &#128100;
+            </button>
+            <div class="account-dropdown" hidden>
+                <p class="account-eyebrow">Signed in as</p>
+                <p class="account-name">{{ user.get_full_name|default:user.username }}</p>
+                <p class="account-meta">@{{ user.username }}</p>
+                {% if user.email %}
+                    <p class="account-meta">{{ user.email }}</p>
+                {% endif %}
+                <p class="account-meta">Member since {{ user.date_joined|date:"M Y" }}</p>
+                <form method="post" action="{% url 'logout' %}" class="account-signout-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button type="submit" class="account-signout">Sign out</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <a
+            class="account-link{% if request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register' %} active{% endif %}"
+            href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}"
+            aria-label="Login"
+        >
+            &#128100;
+        </a>
+    {% endif %}
+</div>
