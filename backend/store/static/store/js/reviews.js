@@ -18,18 +18,36 @@ function getTotalReviews() {
   return Object.values(ratingData).reduce((a, b) => a + b, 0);
 }
 
+// Function to calculate average score
+function getAverageScore() {
+  const total = getTotalReviews();
+  if (total === 0) return 0;
+  const weighted = Object.entries(ratingData).reduce((sum, [stars, count]) => sum + stars * count, 0);
+  return (weighted / total).toFixed(1);
+}
+
+// Function to update the average score display
+function updateAverageScore() {
+  const avg = getAverageScore();
+  const total = getTotalReviews();
+  document.getElementById('avg-number').textContent = avg;
+  document.getElementById('avg-label').textContent = `Based on ${total} review${total !== 1 ? 's' : ''}`;
+}
+
 // Function to update the rating distribution display
 function updateRatingDistribution() {
   const total = getTotalReviews();
-  
+
   for (let stars = 1; stars <= 5; stars++) {
     const count = ratingData[stars];
     const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
-    
+
     document.getElementById(`count-${stars}`).textContent = count;
     document.getElementById(`percent-${stars}`).textContent = percentage + '%';
     document.getElementById(`bar-${stars}`).style.width = percentage + '%';
   }
+
+  updateAverageScore();
 }
 
 // STAR PICKER
