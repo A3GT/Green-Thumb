@@ -26,7 +26,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "DEV_ONLY_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs.umb.edu', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['cs.umb.edu', '127.0.0.1', 'localhost', '.onrender.com']
+
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -115,6 +118,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR.parent / 'assets',
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
