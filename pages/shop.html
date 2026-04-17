@@ -35,12 +35,18 @@
           <p class="product-desc">This shouldn't be visible</p>
           <div class="product-price">$0.00</div>
 <div class="cart-controls">
-  <button onclick="changeQty(this,-1)">-</button>
-  <span class="qty">1</span>
-  <button onclick="changeQty(this,1)">+</button>
 
-  <button onclick="addToCartWithQty(this,'Default',0)">Add to Cart</button>
-</div>        
+  <div class="qty-group">
+    <button onclick="changeQty(this,-1)">-</button>
+    <span class="qty">1</span>
+    <button onclick="changeQty(this,1)">+</button>
+  </div>
+
+<button class="add-btn">
+  Add to Cart
+</button>
+
+</div>    
 </div>
       </article>
       <!--

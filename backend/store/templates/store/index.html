@@ -1,43 +1,72 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title> GreenThumb </title>
-	<title>Home</title>
-	<link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
-	<link rel="stylesheet" href="{% static 'store/css/home.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Green Thumb</title>
+
+    <link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
+    <!-- Use ABOUT CSS for same design -->
+    <link rel="stylesheet" href="{% static 'store/css/about.css' %}">
 </head>
 
-
 <body data-page="index" data-static-root="{% get_static_prefix %}">
+
 {% include 'store/partials/navbar.html' %}
 
-<div class="home-container">
-    <h1>Welcome to Green Thumb</h1>
-    <p>A place where we can make environmentally conscious choices by offering
-    reusable, eco-friendly products that reduce waste and support a greener lifestyle!</p>
-    <div class="outer_generator">
-        <div class="inner_generator">
-            <div class="plant_display">
-                <div class="generated">
-                    <img id="generated_plant" class="generated" alt="plant" src="{% static 'images/plants/wheel.png' %}">
-                </div>
-                <p id="generated_plant_description" class="generated"></p>
-            </div>
-            <div class="generator-buttons">
-                <button class="generate" id="generate_button" onclick="generate_plant()">Generate a Plant</button>
-                <button class="generate" id="shop_button" onclick="plant_in_shop()" style="visibility: hidden;">Add to Cart</button>
-            </div>
-        </div>
+<h1>Welcome to Green Thumb 🌱</h1>
+
+<p class="about-text">
+A place where we promote environmentally conscious living through
+eco-friendly and reusable products. Explore, generate, and shop plants
+while contributing to a greener future.
+</p>
+
+<!-- INFO CARDS (About style) -->
+<div class="info-columns">
+
+    <div class="info-box">
+        <h2>🌿 Discover Plants</h2>
+        <p>Generate random plants and learn about their benefits and uses.</p>
     </div>
+
+    <div class="info-box">
+        <h2>🛒 Shop Eco Products</h2>
+        <p>Buy sustainable products that help reduce environmental impact.</p>
+    </div>
+
+    <div class="info-box">
+        <h2>🌍 Live Green</h2>
+        <p>Adopt eco-friendly habits and contribute to a healthier planet.</p>
+    </div>
+
+</div>
+
+<!-- GENERATOR (Styled like card) -->
+<div class="about-text generator-card" style="text-align:center; max-width:600px;">
+
+    <div class="plant_display">
+        <img id="generated_plant"
+             src="{% static 'images/plants/wheel.png' %}">
+    </div>
+    <p id="generated_plant_description"></p>
+    <div class="generator-buttons">
+        <button class="generate" id="generate_button" onclick="generate_plant()">
+            Generate a Plant
+        </button>
+
+        <button class="generate" id="shop_button"
+                onclick="plant_in_shop()" style="visibility:hidden;">
+            Add to Cart
+        </button>
+    </div>
+
 </div>
 
 <script src="{% static 'store/js/home.js' %}"></script>
+<script src="{% static 'store/js/about.js' %}"></script>
 <script src="{% static 'store/js/common.js' %}"></script>
+
 </body>
-
-
 </html>

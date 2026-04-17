@@ -10,9 +10,9 @@ function loadCart(){
   let cartDiv = document.getElementById("cart-items");
   let total = 0;
 
-  cartDiv.innerHTML = "";
+  cartDiv.innerHTML = "";   // clear before rendering
 
-  cart.forEach((item,index)=>{
+  cart.forEach((item, index) => {
 
     let qty = item.qty || 1;
     let itemTotal = item.price * qty;
@@ -21,21 +21,21 @@ function loadCart(){
 
     cartDiv.innerHTML += `
       <article class="product-card">
-        <div class="product-info">
 
-          <h2 class="product-name">${item.name}</h2>
+        <img src="${item.image || ''}" alt="${item.name}" class="cart-img">
 
-          <div class="cart-controls">
-            <button onclick="updateQty(${index}, -1)">-</button>
-            <span class="qty">${qty}</span>
-            <button onclick="updateQty(${index}, 1)">+</button>
-          </div>
+        <div class="product-name">${item.name}</div>
 
-          <div class="product-price">$${itemTotal.toFixed(2)}</div>
-
-          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-
+        <div class="cart-controls">
+          <button onclick="updateQty(${index}, -1)">-</button>
+          <span class="qty">${qty}</span>
+          <button onclick="updateQty(${index}, 1)">+</button>
         </div>
+
+        <div class="product-price">$${itemTotal.toFixed(2)}</div>
+
+        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+
       </article>
     `;
   });

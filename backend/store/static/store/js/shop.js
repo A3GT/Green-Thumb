@@ -6,15 +6,13 @@ document.querySelectorAll("[data-link]").forEach(a => {
 const searchInput = document.getElementById("product-search-input");
 const searchButton = document.getElementById("product-search-button");
 const productsGrid = document.getElementById("products-grid");
-const productCard = document.getElementsByClassName("product-card")[0];
+const productCard = document.getElementsByClassName("product-card")[0] || null;
 const productCards = [];
 const emptyState = document.getElementById("search-empty");
 const staticRoot = document.body.dataset.staticRoot || "/static/";
 
 //Runs on page load and searches by URL tag
 const urlQuery = window.location.hash?.split("search=")[1]?.replaceAll("%20", ' ').split("#")[0];
-
-productCard.remove();
 
 class ProductCard {
   constructor(product_name, src, desc, price) {
@@ -29,6 +27,7 @@ class ProductCard {
   }
 
   createCard() {
+    if (!productCard) return;
     const clone = productCard.cloneNode(true);
     const img = clone.querySelector("img");
     img.src = this.src;
@@ -36,11 +35,11 @@ class ProductCard {
     clone.querySelector("h2.product-name").innerText = this.product_name;
     clone.querySelector("p.product-desc").innerText = this.desc;
     clone.querySelector("div.product-price").innerText = "$" + this.price.toFixed(2);
-    const btn = clone.querySelector(".cart-controls button:last-child");
-    btn.onclick = function() {
-    addToCartWithQty(btn, this.product_name, this.price);
-    }.bind(this);
-    clone.querySelector.data
+const btn = clone.querySelector(".add-btn");
+
+btn.addEventListener("click", () => {
+  addToCartWithQty(btn, this.product_name, this.price);
+});
     productsGrid.appendChild(clone);
     productCards.push(clone);
   }
@@ -142,13 +141,18 @@ const products = [
 ];
 
 addEventListener("DOMContentLoaded", (event) => {
+
+  if(productCard){
+    productCard.remove();
+  }
+
   //Converts json dump into product card.
   django_shop_items.forEach((element) => {
     products.push(ProductCard.from(element))
-  })
-  //Runs through the product cards and creates an html element copy of productCard
+  });
+
   products.forEach((element) => element.createCard());
-  //Check to see if there is a urlQuery and do a search if there is
+
   if(urlQuery != null) {
     searchInput.value = urlQuery;
     filterProducts()
@@ -194,11 +198,12 @@ let existingItem = cart.find(item => item.name === name);
 if(existingItem){
   existingItem.qty += qty;
 }else{
-  cart.push({
-    name: name,
-    price: price,
-    qty: qty
-  });
+cart.push({
+  name: name,
+  price: price,
+  qty: qty,
+  image: this.src || btn.closest(".product-card").querySelector("img").src
+});
 }
 
   localStorage.setItem("cart", JSON.stringify(cart));

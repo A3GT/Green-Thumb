@@ -32,11 +32,10 @@ class ProductCard {
     clone.querySelector("h2.product-name").innerText = this.product_name;
     clone.querySelector("p.product-desc").innerText = this.desc;
     clone.querySelector("div.product-price").innerText = "$" + this.price.toFixed(2);
-    const btn = clone.querySelector(".cart-controls button:last-child");
-    btn.onclick = function() {
+    const btn = clone.querySelector(".add-btn");
+    btn.addEventListener("click", () => {
     addToCartWithQty(btn, this.product_name, this.price);
-    }.bind(this);
-    clone.querySelector.data
+    });
     productsGrid.appendChild(clone);
     productCards.push(clone);
   }
@@ -180,17 +179,21 @@ function addToCartWithQty(btn, name, price){
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let existingItem = cart.find(item => item.name === name);
+  let imgSrc = btn.closest(".product-card").querySelector("img").src;
+
+  let existingItem = cart.find(item => item.name === name);
 
 if(existingItem){
   existingItem.qty += qty;
-}else{
+} else {
   cart.push({
     name: name,
     price: price,
-    qty: qty
+    qty: qty,
+    image: imgSrc
   });
 }
+
 
   localStorage.setItem("cart", JSON.stringify(cart));
 

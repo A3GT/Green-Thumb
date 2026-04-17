@@ -157,3 +157,39 @@ body{
     right:-8px;
   }
 }
+
+/* NAV LINK ANIMATION */
+[data-link] {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+/* underline animation */
+[data-link]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: #52b788;
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+/* hover effect */
+[data-link]:hover::after {
+  width: 100%;
+}
+
+/* active page highlight */
+[data-link].active::after {
+  width: 100%;
+}
+
+[data-link].active {
+  color: #2d6a4f;
+  font-weight: 700;
+}
