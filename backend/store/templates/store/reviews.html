@@ -231,73 +231,59 @@
   </div>
 </div>
 <!-- REVIEWS -->
-
-<div class="reviews-container" id="reviews-container">
-
-<div class="review-card">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;</div>
-<div class="review-text">"Love your product. The quality is amazing."</div>
-<div class="reviewer-name">Raneem A.</div>
-<div class="review-date">Feb 2026</div>
-</div>
-
-<div class="review-card">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<div class="review-text">"This is so nicely packaged. I think I'm in love!"</div>
-<div class="reviewer-name">Shrinal D.</div>
-<div class="review-date">Jan 2026</div>
-</div>
-
-<div class="review-card">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<div class="review-text">"I am very happy with my purchase!"</div>
-<div class="reviewer-name">David G.</div>
-<div class="review-date">Jan 2026</div>
-</div>
-
-<div class="review-card">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<div class="review-text">"I love this. I've already convinced my friends to get one!"</div>
-<div class="reviewer-name">Tien L.</div>
-<div class="review-date">Dec 2025</div>
-</div>
-
-<div class="review-card">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<div class="review-text">"This is one of the best products I have bought!"</div>
-<div class="reviewer-name">Grey</div>
-<div class="review-date">Dec 2025</div>
-</div>
-
-</div>
-
+<div class="reviews-container" id="reviews-container"></div>
 
 <!-- REVIEW FORM -->
-
+{% if user_authenticated %}
 <div class="form-container">
+  <div class="form-header">
+    <h2>Leave a Review</h2>
+    <p class="form-subtitle">Logged in as <strong>{{ username }}</strong></p>
+  </div>
 
-<h2>Leave a Review :)</h2>
+  <label>Your Name</label>
+  <input type="text" id="input-name" placeholder="e.g. Alex G." value="{{ username }}">
 
-<label>Your Name</label>
-<input type="text" id="input-name" placeholder="e.g. Alex G.">
+  <label>Product</label>
+  <select id="input-product">
+    <option value="" disabled selected>Select a product...</option>
+    <option value="Reusable Water Bottle">Reusable Water Bottle</option>
+    <option value="Cotton Tote Bag">Cotton Tote Bag</option>
+    <option value="Steel Straw Set">Steel Straw Set</option>
+    <option value="Succulents">Succulents</option>
+    <option value="Flower Seeds">Flower Seeds</option>
+  </select>
 
-<label>Your Rating</label>
+  <label>Your Rating</label>
+  <div class="star-picker" id="star-picker">
+    <span data-val="1">&#9733;</span>
+    <span data-val="2">&#9733;</span>
+    <span data-val="3">&#9733;</span>
+    <span data-val="4">&#9733;</span>
+    <span data-val="5">&#9733;</span>
+  </div>
 
-<div class="star-picker" id="star-picker">
-<span data-val="1">&#9733;</span>
-<span data-val="2">&#9733;</span>
-<span data-val="3">&#9733;</span>
-<span data-val="4">&#9733;</span>
-<span data-val="5">&#9733;</span>
+  <label>Your Review</label>
+  <textarea id="input-review" placeholder="Write your review here..."></textarea>
+
+  <button onclick="submitReview()">Submit Review</button>
 </div>
-
-<label>Your Review</label>
-<textarea id="input-review" placeholder="Write your review here..."></textarea>
-
-<button onclick="submitReview()">Submit Review</button>
-
+{% else %}
+<div class="form-container login-prompt">
+  <div class="form-header">
+    <h2>Leave a Review</h2>
+    <p class="form-subtitle">You need to be logged in to leave a review</p>
+  </div>
+  <a href="{% url 'login' %}?next={% url 'reviews' %}" class="login-btn">Log in to Review</a>
 </div>
+{% endif %}
 
+<script>
+  var django_reviews    = {{ reviews_json|safe }};
+  var current_user_id   = {{ current_user_id|default:"null" }};
+  var user_authenticated = {{ user_authenticated|yesno:"true,false" }};
+  var username          = "{{ username }}";
+</script>
 <script src="{% static 'store/js/reviews.js' %}"></script>
 <script src="{% static 'store/js/common.js' %}"></script>
 

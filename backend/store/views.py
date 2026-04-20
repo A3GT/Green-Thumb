@@ -6,9 +6,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
 from .forms import SignUpForm
-from .models import ShopProduct
+from .models import ShopProduct, Review
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 def _get_redirect_target(request, default_name='home'):
@@ -38,7 +41,60 @@ def shop_view(request):
 
 
 def reviews_view(request):
-    return render(request, 'store/reviews.html')
+    reviews = list(Review.objects.order_by('-created_at').values('id', 'user_id', 'name', 'product', 'stars', 'text', 'created_at'))
+    for r in reviews:
+        r['date'] = r['created_at'].strftime('%b %Y')
+        del r['created_at']
+    context = {
+        'reviews_json': json.dumps(reviews, cls=DjangoJSONEncoder),
+        'current_user_id': request.user.id if request.user.is_authenticated else None,
+        'username': request.user.username if request.user.is_authenticated else '',
+        'user_authenticated': request.user.is_authenticated,
+    }
+    return render(request, 'store/reviews.html', context)
+
+
+@login_required
+@require_POST
+def delete_review_view(request, review_id):
+    try:
+        review = Review.objects.get(id=review_id)
+        if review.user != request.user:
+            return JsonResponse({'error': 'Not authorized'}, status=403)
+        review.delete()
+        return JsonResponse({'success': True})
+    except Review.DoesNotExist:
+        return JsonResponse({'error': 'Not found'}, status=404)
+
+
+@login_required
+@require_POST
+def submit_review_view(request):
+    try:
+        data    = json.loads(request.body)
+        name    = data.get('name', '').strip()
+        product = data.get('product', '').strip()
+        stars   = int(data.get('stars', 0))
+        text    = data.get('text', '').strip()
+
+        if not name or not product or not text or not (1 <= stars <= 5):
+            return JsonResponse({'error': 'Invalid data'}, status=400)
+
+        review = Review.objects.create(user=request.user, name=name, product=product, stars=stars, text=text)
+        return JsonResponse({
+            'success': True,
+            'review': {
+                'id': review.id,
+                'user_id': review.user.id,
+                'name': review.name,
+                'product': review.product,
+                'stars': review.stars,
+                'text': review.text,
+                'date': review.created_at.strftime('%b %Y'),
+            }
+        })
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
 
 
 def about_view(request):
