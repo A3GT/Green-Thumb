@@ -191,7 +191,7 @@ function addToCartWithQty(btn, name, price){
 
   let qty = parseInt(btn.parentElement.querySelector(".qty").innerText);
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
 let existingItem = cart.find(item => item.name === name);
 
@@ -206,7 +206,7 @@ cart.push({
 });
 }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  setStoredCart(cart);
 
   updateCartCount();
 

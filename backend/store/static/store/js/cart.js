@@ -5,7 +5,7 @@ document.querySelectorAll("[data-link]").forEach(a => {
 
 function loadCart(){
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   let cartDiv = document.getElementById("cart-items");
   let total = 0;
@@ -47,11 +47,11 @@ function loadCart(){
   document.getElementById("cart-total").innerText = total.toFixed(2);
 }
 function removeItem(index){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   cart.splice(index,1);
 
-  localStorage.setItem("cart",JSON.stringify(cart));
+  setStoredCart(cart);
 
   loadCart();
   updateCartCount();
@@ -60,7 +60,7 @@ function removeItem(index){
 function checkout(){
   alert("Payment successful!");
 
-  localStorage.removeItem("cart");
+  clearStoredCart();
 
   loadCart();
   updateCartCount();
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", updateCartCount);
 
 function updateQty(index, change){
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   cart[index].qty += change;
 
@@ -83,7 +83,7 @@ function updateQty(index, change){
     cart.splice(index,1);
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  setStoredCart(cart);
 
   loadCart();
   updateCartCount();
@@ -121,7 +121,7 @@ function simulatePayment() {
 
   popup.classList.add("show");
 
-  localStorage.removeItem("cart");
+  clearStoredCart();
 
   setTimeout(() => {
     popup.classList.remove("show");

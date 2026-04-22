@@ -1,4 +1,7 @@
-<div class="navbar">
+<div
+    class="navbar"
+    data-cart-key="{% if user.is_authenticated %}cart:user:{{ user.id }}{% else %}cart:guest{% endif %}"
+>
     <a class="brand" href="{% url 'home' %}">Green Thumb</a>
     <a href="{% url 'home' %}" data-link="index">Home</a>
     <a href="{% url 'shop' %}" data-link="shop">Shop</a>
