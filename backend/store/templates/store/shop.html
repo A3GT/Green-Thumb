@@ -6,47 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'store/css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/about.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/shop.css' %}">
 </head>
 <body data-page="shop" data-static-root="{% get_static_prefix %}">
-  <div class="navbar">
-    <a class="brand" href="{% url 'home' %}">Green Thumb</a>
-    <a href="{% url 'home' %}" data-link="index">Home</a>
-    <a href="{% url 'shop' %}" data-link="shop">Shop</a>
-    <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
-    <a href="{% url 'about' %}" data-link="about">About</a>
-    <div class="search-box">
-        <input id="product-search-input" type="text" placeholder="Search products...">
-        <button id="product-search-button" type="button">Search</button>
-    </div>
-   <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
-  &#128722;
-  <span class="cart-count" id="cart-count">0</span>
-</a>
-   <a class="account-link" href="{% url 'login' %}" aria-label="Login">
-      &#128100;
-   </a>
-</div>
+  {% include 'store/partials/navbar.html' with show_search=True %}
 
-  <main class="shop-wrap">
+  <main class="shop-wrap themed">
     <h1 class="shop-title">Shop Essentials</h1>
 
     <section class="products-grid" id="products-grid">
-      <article class="product-card">
-        <img src="{% static 'images/products/waterbottle.png' %}" alt="Default">
-        <div class="product-info">
-          <h2 class="product-name">Default</h2>
-          <p class="product-desc">This shouldn't be visible</p>
-          <div class="product-price">$0.00</div>
-<div class="cart-controls">
-  <button onclick="changeQty(this,-1)">-</button>
-  <span class="qty">1</span>
-  <button onclick="changeQty(this,1)">+</button>
+<article class="product-card">
+  <img src="{% static 'images/products/waterbottle.png' %}" alt="Default">
 
-  <button onclick="addToCartWithQty(this,'Default',0)">Add to Cart</button>
-</div>        
-</div>
-      </article>
+  <div class="product-info">
+    <h2 class="product-name"></h2>
+    <p class="product-desc"></p>
+    <div class="product-price"></div>
+
+    <div class="cart-controls">
+      <button onclick="changeQty(this,-1)">-</button>
+      <span class="qty">1</span>
+      <button onclick="changeQty(this,1)">+</button>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+</article>
       <!--
       <article class="product-card">
         <img src="{% static 'images/products/waterbottle.png' %}" alt="Reusable Water Bottle">
@@ -105,9 +90,9 @@
   </main>
 
   <script>
-  var django_shop_items = {% autoescape off %}{{ shop_data }}{% endautoescape %};
+  var django_shop_items = JSON.parse('{{ shop_data|default:"[]"|escapejs }}');
   </script>
-  <script src="{% static 'store/js/shop.js' %}"></script>
   <script src="{% static 'store/js/common.js' %}"></script>
+  <script src="{% static 'store/js/shop.js' %}"></script>
 </body>
 </html>

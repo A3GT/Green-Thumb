@@ -213,3 +213,136 @@ h1 {
 		width: 100%;
 	}
 }
+
+.product-card{
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeUp 0.5s ease;
+}
+
+.product-card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+}
+
+.cart-summary{
+  margin-top:30px;
+  padding:25px;
+  background: rgba(255,255,255,0.7);
+  border-radius:16px;
+  backdrop-filter: blur(6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  animation: fadeUp 0.8s ease;
+}
+
+
+.cart-controls button:hover,
+.pay-btn:hover{
+  background: #4c7a5a;
+  transform: scale(1.05);
+}
+
+.product-card{
+  display: flex;
+  align-items: center;     /* 🔥 THIS IS THE MAGIC */
+  justify-content: space-between;
+
+  gap: 20px;
+  padding: 20px;
+
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+.cart-img{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.cart-controls{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center; 
+  width: 36px;
+  height: 36px;
+}
+
+.product-price{
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.remove-btn{
+  background: #5f8f6d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: auto;
+  height: auto;
+}
+.remove-btn:hover{
+  background: #4c7a5a;
+  transform: scale(1.05);
+}
+
+.product-name{
+  flex: 2;
+  text-align: center;
+  font-weight: 600;
+}
+
+.pay-btn{
+  padding: 10px 20px;
+  background: #5f8f6d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  width: auto;
+  height: auto;
+}
+
+.pay-btn:hover{
+  background: #4c7a5a;
+  transform: scale(1.05);
+}
+
+.cart-controls button{
+  background: #5f8f6d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-controls button:hover{
+  background: #4c7a5a;
+  transform: scale(1.05);
+}

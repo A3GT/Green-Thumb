@@ -5,7 +5,7 @@ document.querySelectorAll("[data-link]").forEach(a => {
 
 function loadCart(){
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   let cartDiv = document.getElementById("cart-items");
   let total = 0;
@@ -20,34 +20,38 @@ function loadCart(){
     total += itemTotal;
 
     cartDiv.innerHTML += `
-      <article class="product-card">
-        <div class="product-info">
+  <article class="product-card">
 
-          <h2 class="product-name">${item.name}</h2>
+    <!-- ✅ PRODUCT IMAGE -->
+    <img src="${item.image || '/static/images/products/waterbottle.png'}" alt="${item.name}">
 
-          <div class="cart-controls">
-            <button onclick="updateQty(${index}, -1)">-</button>
-            <span class="qty">${qty}</span>
-            <button onclick="updateQty(${index}, 1)">+</button>
-          </div>
+    <div class="product-info">
 
-          <div class="product-price">$${itemTotal.toFixed(2)}</div>
+      <h2 class="product-name">${item.name}</h2>
 
-          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+      <div class="cart-controls">
+        <button onclick="updateQty(${index}, -1)">-</button>
+        <span class="qty">${qty}</span>
+        <button onclick="updateQty(${index}, 1)">+</button>
+      </div>
 
-        </div>
-      </article>
-    `;
+      <div class="product-price">$${itemTotal.toFixed(2)}</div>
+
+      <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+
+    </div>
+  </article>
+`;
   });
 
   document.getElementById("cart-total").innerText = total.toFixed(2);
 }
 function removeItem(index){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   cart.splice(index,1);
 
-  localStorage.setItem("cart",JSON.stringify(cart));
+  setStoredCart(cart);
 
   loadCart();
   updateCartCount();
@@ -56,7 +60,7 @@ function removeItem(index){
 function checkout(){
   alert("Payment successful!");
 
-  localStorage.removeItem("cart");
+  clearStoredCart();
 
   loadCart();
   updateCartCount();
@@ -71,7 +75,7 @@ document.addEventListener("DOMContentLoaded", updateCartCount);
 
 function updateQty(index, change){
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getStoredCart();
 
   cart[index].qty += change;
 
@@ -79,8 +83,48 @@ function updateQty(index, change){
     cart.splice(index,1);
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  setStoredCart(cart);
 
   loadCart();
   updateCartCount();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const paymentSelect = document.getElementById("payment-method");
+  const cardForm = document.getElementById("card-form");
+
+  if (!paymentSelect || !cardForm) return;
+
+  function togglePaymentUI() {
+    const val = paymentSelect.value.trim();
+
+    console.log("Selected:", val); // debug
+
+    if (val === "card") {
+      cardForm.style.display = "block";
+    } else {
+      cardForm.style.display = "none";
+    }
+  }
+
+  // 🔥 FIX: use BOTH events (important)
+  paymentSelect.addEventListener("change", togglePaymentUI);
+  paymentSelect.addEventListener("input", togglePaymentUI);
+
+  // 🔥 FORCE correct state AFTER render
+  setTimeout(togglePaymentUI, 100);
+
+});
+function simulatePayment() {
+  const popup = document.getElementById("success-popup");
+
+  popup.classList.add("show");
+
+  clearStoredCart();
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+    location.reload();
+  }, 2000);
 }
