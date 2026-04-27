@@ -124,22 +124,7 @@ h1 {
 
 <body data-page="index" data-static-root="{% get_static_prefix %}">
 
-    <div class="navbar">
-        <a class="brand" href="{% url 'home' %}">Green Thumb</a>
-        <a href="{% url 'home' %}" data-link="index">Home</a>
-        <a href="{% url 'shop' %}" data-link="shop">Shop</a>
-        <a href="{% url 'reviews' %}" data-link="reviews">Reviews</a>
-        <a href="{% url 'about' %}" data-link="about">About</a>
-
-        <a class="cart-link" href="{% url 'cart' %}" data-link="cart" aria-label="Cart">
-            &#128722;
-            <span class="cart-count" id="cart-count">0</span>
-        </a>
-
-        <a class="account-link" href="{% url 'login' %}" aria-label="Login">
-            &#128100;
-        </a>
-    </div>
+    {% include 'store/partials/navbar.html' %}
 
     <div class="home-container"> 
         <div class="hero-content">
