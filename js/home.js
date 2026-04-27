@@ -89,7 +89,7 @@ function generate_plant() {
 	generated_plant.style.animation = "none";
 	generated_plant.offsetHeight;
 	generated_plant.style.animation = null;
-	cart_button.style.visibility = false;
+	cart_button.style.visibility = "hidden";
 	spin();
 }
 
@@ -118,7 +118,7 @@ function spin() {
 	if(spin_timer != null){
 		clearTimeout(spin_timer);
 	}
-	generated_plant.src = "assets/images/plants/wheel.png";
+	generated_plant.src = document.body.dataset.staticRoot + "images/plants/wheel.png";
 	generated_plant.style.animation = "spin .5s linear";
 	generated_plant.style.animationDuration = "1s";
 	generate_button.innerHTML = "Generate a new plant";
