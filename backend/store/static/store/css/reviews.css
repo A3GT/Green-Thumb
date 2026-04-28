@@ -63,7 +63,7 @@ p.subtitle{
 }
 
 .review-card .stars{
-  color:gold;
+  color: #52b788;
   font-size:20px;
   margin-bottom:8px;
 }
@@ -186,7 +186,7 @@ p.subtitle{
 }
 
 .star-picker span.selected{
-  color:gold;
+  color: #52b788;
 }
 
 .form-container button{

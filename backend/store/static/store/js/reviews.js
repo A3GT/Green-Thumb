@@ -126,10 +126,10 @@ stars.forEach(star => {
   });
   star.addEventListener("mouseover", function() {
     const val = parseInt(this.dataset.val);
-    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= val ? "gold" : "#ccc"; });
+    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= val ? "#52b788" : "#ccc"; });
   });
   star.addEventListener("mouseout", function() {
-    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= selectedStars ? "gold" : "#ccc"; });
+    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= selectedStars ? "#52b788" : "#ccc"; });
   });
 });
 
