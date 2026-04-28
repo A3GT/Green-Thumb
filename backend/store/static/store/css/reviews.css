@@ -167,26 +167,63 @@ p.subtitle{
   resize:vertical;
 }
 
-/* STAR PICKER */
-.star-picker{
-  display:flex;
-  gap:5px;
-  margin-bottom:15px;
+/* FORM ROW - two columns */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 15px;
 }
 
-.star-picker span{
-  font-size:30px;
-  cursor:pointer;
-  color:#ccc;
-  transition: transform 0.1s ease;
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* RATING SECTION */
+.rating-section {
+  margin-bottom: 15px;
+}
+
+.rating-hint {
+  font-size: 12px;
+  color: #aaa;
+  margin-left: 4px;
+  font-style: italic;
+}
+
+/* STAR PICKER */
+.star-picker {
+  display: inline-flex;
+  gap: 4px;
+  margin: 8px 0 4px 0;
+}
+
+.star-picker span {
+  font-size: 36px;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s ease, transform 0.15s ease;
+  line-height: 1;
 }
 
 .star-picker span:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
-.star-picker span.selected{
+.star-picker span.selected {
   color: #52b788;
+}
+
+.rating-label {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+  margin-top: 4px;
 }
 
 .form-container button{

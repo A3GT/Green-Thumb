@@ -116,6 +116,7 @@ function getCsrfToken() {
 }
 
 // STAR PICKER
+const ratingLabels = { 1: "Poor", 2: "Fair", 3: "Good", 4: "Very Good", 5: "Excellent" };
 let selectedStars = 0;
 const stars = document.querySelectorAll("#star-picker span");
 
@@ -123,13 +124,14 @@ stars.forEach(star => {
   star.addEventListener("click", function() {
     selectedStars = parseInt(this.dataset.val);
     stars.forEach(s => s.classList.toggle("selected", parseInt(s.dataset.val) <= selectedStars));
+    document.getElementById("rating-label").textContent = ratingLabels[selectedStars];
   });
   star.addEventListener("mouseover", function() {
     const val = parseInt(this.dataset.val);
-    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= val ? "#52b788" : "#ccc"; });
+    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= val ? "#52b788" : "#ddd"; });
   });
   star.addEventListener("mouseout", function() {
-    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= selectedStars ? "#52b788" : "#ccc"; });
+    stars.forEach(s => { s.style.color = parseInt(s.dataset.val) <= selectedStars ? "#52b788" : "#ddd"; });
   });
 });
 
@@ -162,7 +164,8 @@ function submitReview() {
       document.getElementById("input-review").value  = "";
       document.getElementById("input-product").value = "";
       selectedStars = 0;
-      stars.forEach(s => { s.style.color = "#ccc"; s.classList.remove("selected"); });
+      stars.forEach(s => s.classList.remove("selected"));
+      document.getElementById("rating-label").textContent = "Select a rating";
     } else {
       alert("Something went wrong. Please try again.");
     }

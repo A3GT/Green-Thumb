@@ -241,30 +241,40 @@
     <p class="form-subtitle">Logged in as <strong>{{ username }}</strong></p>
   </div>
 
-  <label>Your Name</label>
-  <input type="text" id="input-name" placeholder="e.g. Alex G." value="{{ username }}">
-
-  <label>Product</label>
-  <select id="input-product">
-    <option value="" disabled selected>Select a product...</option>
-    <option value="Reusable Water Bottle">Reusable Water Bottle</option>
-    <option value="Cotton Tote Bag">Cotton Tote Bag</option>
-    <option value="Steel Straw Set">Steel Straw Set</option>
-    <option value="Succulents">Succulents</option>
-    <option value="Flower Seeds">Flower Seeds</option>
-  </select>
-
-  <label>Your Rating</label>
-  <div class="star-picker" id="star-picker">
-    <span data-val="1">&#9733;</span>
-    <span data-val="2">&#9733;</span>
-    <span data-val="3">&#9733;</span>
-    <span data-val="4">&#9733;</span>
-    <span data-val="5">&#9733;</span>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="input-name" placeholder="e.g. Alex G." value="{{ username }}">
+    </div>
+    <div class="form-group">
+      <label>Product</label>
+      <select id="input-product">
+        <option value="" disabled selected>Select a product...</option>
+        <option value="Reusable Water Bottle">Reusable Water Bottle</option>
+        <option value="Cotton Tote Bag">Cotton Tote Bag</option>
+        <option value="Steel Straw Set">Steel Straw Set</option>
+        <option value="Succulents">Succulents</option>
+        <option value="Flower Seeds">Flower Seeds</option>
+      </select>
+    </div>
   </div>
 
-  <label>Your Review</label>
-  <textarea id="input-review" placeholder="Write your review here..."></textarea>
+  <div class="rating-section">
+    <label>Your Rating</label>
+    <div class="star-picker" id="star-picker">
+      <span data-val="1">&#9733;</span>
+      <span data-val="2">&#9733;</span>
+      <span data-val="3">&#9733;</span>
+      <span data-val="4">&#9733;</span>
+      <span data-val="5">&#9733;</span>
+    </div>
+    <span class="rating-label" id="rating-label">Select a rating</span>
+  </div>
+
+  <div class="form-group">
+    <label>Your Review</label>
+    <textarea id="input-review" placeholder="Share your experience with this product..."></textarea>
+  </div>
 
   <button onclick="submitReview()">Submit Review</button>
 </div>
