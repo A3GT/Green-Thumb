@@ -207,3 +207,41 @@ body {
     transform: translateY(-2px);
     background: linear-gradient(135deg, #40916c, #2d6a4f);
 }
+.success-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.success-popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.success-box {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  animation: pop 0.4s ease;
+}
+
+.checkmark {
+  font-size: 40px;
+  color: #52b788;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}

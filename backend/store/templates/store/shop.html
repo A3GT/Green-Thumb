@@ -12,6 +12,13 @@
 <body data-page="shop" data-static-root="{% get_static_prefix %}">
   {% include 'store/partials/navbar.html' with show_search=True %}
 
+  <div id="cart-popup" class="success-popup">
+  <div class="success-box">
+    <div class="checkmark">✔️</div>
+    <h2>Added to Cart!</h2>
+    <p id="popup-text"></p>
+  </div>
+</div>
   <main class="shop-wrap themed">
     <h1 class="shop-title">Shop Essentials</h1>
 

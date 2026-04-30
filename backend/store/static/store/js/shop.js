@@ -210,7 +210,16 @@ cart.push({
 
   updateCartCount();
 
-  alert(name + " (x" + qty + ") added to cart!");
+  const popup = document.getElementById("cart-popup");
+const popupText = document.getElementById("popup-text");
+
+popupText.innerText = name + " (x" + qty + ") added to cart";
+
+popup.classList.add("show");
+
+setTimeout(() => {
+  popup.classList.remove("show");
+}, 1500);
 }
 
 function changeQty(btn, change){
