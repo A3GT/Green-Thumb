@@ -4,7 +4,6 @@ document.querySelectorAll("[data-link]").forEach(a => {
 });
 
 
-
 const generated_plant = document.getElementById("generated_plant");
 const generate_button = document.getElementById("generate_button");
 const generated_plant_description = document.getElementById("generated_plant_description");
@@ -108,6 +107,12 @@ function load_rand_plant() {
 function get_plant() {
 	let plant = load_rand_plant();
 	cart_button.style.visibility = "visible";
+
+	// generated_placeholder.style.display = "none";
+	// generated_plant.style.display = "block";
+
+	generated_plant.hidden = false;
+
 	generated_plant.src = plant.src;
 	generated_plant_description.innerHTML = plant.description;
 }
@@ -118,9 +123,21 @@ function spin() {
 	if(spin_timer != null){
 		clearTimeout(spin_timer);
 	}
-	generated_plant.src = document.body.dataset.staticRoot + "images/plants/wheel.png";
+
+	generated_plant.src = "assets/images/plants/wheel.png";
+	generated_plant.style.display = "block";
+	generated_plant.hidden = false;
+	generated_plant.style.animation = "spin 1s linear";
+
+
+/* old 
+	generated_plant.src = document.body.dataset.staticRoot + "images/plants/plant-icon.png";
 	generated_plant.style.animation = "spin .5s linear";
 	generated_plant.style.animationDuration = "1s";
+	generated_placeholder.style.display = "flex";
+	generated_plant.style.display = "none";
+*/
+
 	generate_button.innerHTML = "Generate a new plant";
 	cart_button.style.visibility = "hidden";
 	//Sets a timer to load in the plant after the animation is finished
