@@ -117,6 +117,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 function simulatePayment() {
+
+
+  if (!isLoggedIn) {
+    window.location.href = "/login/?next=/cart/";
+    return;
+  }
+
+  const method = document.getElementById("payment-method").value;
+
+
+  if (method === "card") {
+    const inputs = document.querySelectorAll("#card-form input");
+
+    let isValid = true;
+
+    inputs.forEach(input => {
+      if (input.value.trim() === "") {
+        isValid = false;
+        input.style.border = "2px solid red"; // highlight error
+      } else {
+        input.style.border = "1px solid #ccc";
+      }
+    });
+
+    if (!isValid) {
+      alert("Please fill all card details!");
+      return;
+    }
+  }
+
   const popup = document.getElementById("success-popup");
 
   popup.classList.add("show");

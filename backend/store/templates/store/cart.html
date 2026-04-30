@@ -30,10 +30,9 @@
   <!-- CUSTOM DROPDOWN -->
   <div class="custom-select">
 <select id="payment-method">
-  <option value="card">💳 Credit / Debit Card</option>
-  <option value="paypal">🅿️ PayPal</option>
-  <option value="applepay">🍎 Apple Pay</option>
-  <option value="cod">🚚 Cash on Delivery</option>
+  <option value="card">Credit / Debit Card</option>
+  <option value="paypal">PayPal</option>
+  <option value="applepay">Apple Pay</option>
 </select>
   </div>
 
@@ -62,6 +61,9 @@
 
   <script src="{% static 'store/js/common.js' %}"></script>
   <script src="{% static 'store/js/cart.js' %}"></script>
+<script>
+  const isLoggedIn = "{{ request.user.is_authenticated }}" === "True";
+</script>
 
 </body>
 
