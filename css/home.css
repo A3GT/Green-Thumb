@@ -9,11 +9,26 @@ body {
     	linear-gradient(135deg, #f7f5ee 0%, #eef7ec 55%, #e3f1e3 100%);
 }
 
+ @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*
 @keyframes spin {
 	0% { transform: rotate(0deg); }
 	50% { transform: rotate(359deg); }
 	100% { transform: rotate(180deg); }
 }
+*/	
+.generated-placeholder {
+	font-size: 10rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
 
 img.generated {
 	display: block;

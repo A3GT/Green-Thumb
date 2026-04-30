@@ -30,8 +30,10 @@ body {
 }
 
 .shop-title {
+  animation: fadeDown 0.8s ease;
   margin-bottom: 1.25rem;
   font-size: 2rem;
+  color: #2d6a4f;
 }
 
 .products-grid {
@@ -48,6 +50,7 @@ body {
   background: rgba(255,255,255,0.7);
   border-radius:16px;
   overflow:hidden;
+  opacity: 0;
 
   backdrop-filter: blur(6px);
   box-shadow:0 10px 24px rgba(0,0,0,0.08);
@@ -174,11 +177,24 @@ body {
   }
 }
 
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 .product-card{
-  animation: fadeUp 0.5s ease;
+  animation: fadeUp 0.8s ease forwards;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  
 }
 
 .qty-group button{
