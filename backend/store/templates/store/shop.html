@@ -8,7 +8,27 @@
     <link rel="stylesheet" href="{% static 'store/css/search.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/about.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/shop.css' %}">
-</head>
+
+    <style>
+      .shop-title {
+        animation: fadeDown 0.8s ease;
+      }
+    
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    
+
+  </head>
+
 <body data-page="shop" data-static-root="{% get_static_prefix %}">
   {% include 'store/partials/navbar.html' with show_search=True %}
 
@@ -20,7 +40,7 @@
   </div>
 </div>
   <main class="shop-wrap themed">
-    <h1 class="shop-title">Shop Essentials</h1>
+    <h1 class="shop-title" style="color: #2d6a4f;">Shop Essentials</h1>
 
     <section class="products-grid" id="products-grid">
 <article class="product-card">
